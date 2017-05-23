@@ -1,3 +1,24 @@
+#IntelliJ
+*.iml
+.iml
+
+#Eclipse
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+.target
+
 # Compiled class file
 *.class
 

@@ -10,7 +10,9 @@ public class User {
 	
 	private String email;
 
-        private String country; 
+	private String country;
+
+	private String group;
 	
 	public User(){
 		id=0;
@@ -22,6 +24,7 @@ public class User {
 		this.address = address;
 		this.email = email;
 		this.country = country;
+		this.group = group;
 	}
 
 	public long getId() {
@@ -56,13 +59,17 @@ public class User {
 		this.email = email;
 	}
 
-        public String getCountry() {
+	public String getCountry() {
 		return country;
 	}
 
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
+	public String getGroup() { return group; }
+
+	public void setGroup(String group) { this.group = group; }
 
 	@Override
 	public int hashCode() {

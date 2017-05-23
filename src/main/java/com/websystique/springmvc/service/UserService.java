@@ -18,7 +18,11 @@ public interface UserService {
 	
 	void deleteUserById(long id);
 
-	List<User> findAllUsers(); 
+	List<User> findAllUsers();
+
+	List<User> findAllEmployees();
+
+	List<User> findAllConsultants();
 	
 	void deleteAllUsers();
 	

@@ -83,6 +83,18 @@
                       </div>
 
 
+		       <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="file">Group</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.user.group" class="form-control input-sm" placeholder="Enter the group. [cmployee or consultant]"/>
+				   <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.uname.$error.required">This is a required field</span>
+                              </div>
+                          </div>
+                      </div>
+
+
                       <div class="row">
                           <div class="form-actions floatRight">
                               <input type="submit"  value="{{!ctrl.user.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
@@ -92,9 +104,14 @@
                   </form>
               </div>
           </div>
+
+
+
+
           <div class="panel panel-default">
                 <!-- Default panel contents -->
-              <div class="panel-heading"><span class="lead">List of Users </span></div>
+		<!-- List of employees -->
+              <div class="panel-heading"><span class="lead">List of Employees </span></div>
               <div class="tablecontainer">
                   <table class="table table-hover">
                       <thead>
@@ -124,6 +141,101 @@
               </div>
           </div>
       </div>
+      <!-- End of List of employees -->
+
+
+
+
+      
+	<div class="panel panel-default">
+                <!-- Default panel contents -->
+		<!-- List of Consultants -->
+              <div class="panel-heading"><span class="lead">List of Consultants </span></div>
+              <div class="tablecontainer">
+                  <table class="table table-hover">
+                      <thead>
+                          <tr>
+                              <th>ID.</th>
+                              <th>Name</th>
+                              <th>Address</th>
+                              <th>Email</th>
+			      <th>Country</th>
+                              <th width="20%"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="u in ctrl.users">
+                              <td><span ng-bind="u.id"></span></td>
+                              <td><span ng-bind="u.username"></span></td>
+                              <td><span ng-bind="u.address"></span></td>
+                              <td><span ng-bind="u.email"></span></td>
+			      <td><span ng-bind="u.country"></span></td>
+			      
+                              <td>
+                              <button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remove</button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <!-- End of List of Consultants -->
+
+
+
+
+
+
+
+
+
+
+      	   <div class="panel panel-default">
+                <!-- Default panel contents -->
+		<!-- List of ALL users Employees & Consultants -->
+              <div class="panel-heading"><span class="lead">List of ALL users, Employees & Consultants </span></div>
+              <div class="tablecontainer">
+                  <table class="table table-hover">
+                      <thead>
+                          <tr>
+                              <th>ID.</th>
+                              <th>Name</th>
+                              <th>Address</th>
+                              <th>Email</th>
+			      <th>Country</th>
+			      <th>Group</th>
+                              <th width="20%"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="u in ctrl.users">
+                              <td><span ng-bind="u.id"></span></td>
+                              <td><span ng-bind="u.username"></span></td>
+                              <td><span ng-bind="u.address"></span></td>
+                              <td><span ng-bind="u.email"></span></td>
+			      <td><span ng-bind="u.country"></span></td>
+			      <td><span ng-bind="u.group"></span></td>
+			      
+                              <td>
+                              <button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remove</button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <!-- End of List of ALL users -->
+
+
+
+
+
+
+
+
+
       
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
       <script src="<c:url value='/static/js/app.js' />"></script>

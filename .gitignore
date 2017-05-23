@@ -1,6 +1,10 @@
 #IntelliJ
 *.iml
 .iml
+.idea
+.idea/
+/.idea
+*.idea
 
 #Personligt
 Demo projekt.odt

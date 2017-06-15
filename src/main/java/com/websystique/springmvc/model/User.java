@@ -10,15 +10,16 @@ public class User {
 	
 	private String email;
 
-	private String country;
+	private String country; 
 
 	private String group;
+
 	
 	public User(){
 		id=0;
 	}
 	
-    public User(long id, String username, String address, String email, String country){
+	public User(long id, String username, String address, String email, String country){
 		this.id = id;
 		this.username = username;
 		this.address = address;
@@ -71,6 +72,7 @@ public class User {
 
 	public void setGroup(String group) { this.group = group; }
 
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -96,7 +98,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", address=" + address
-				+ ", email=" + email + ", country=" + country + "]";
+				+ ", email=" + email + "]";
 	}
 	
 

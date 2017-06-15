@@ -24,40 +24,34 @@ public class HelloWorldRestController {
     UserService userService;  //Service which will do all data retrieval/manipulation work
  
     
+
+//-------------------Retrieve All Users by Employee Group--------------------------------------------
+     
+    @RequestMapping(value = "/employees/", method = RequestMethod.GET)
+    public ResponseEntity<List<User>> listAllEmployees() {
+        List<User> employees = userService.findAllEmployees();
+        if(employees.isEmpty()){
+            return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+        }
+	return new ResponseEntity<List<User>>(employees, HttpStatus.OK);
+    }
+
+
+
+
     //-------------------Retrieve All Users--------------------------------------------------------
      
     @RequestMapping(value = "/user/", method = RequestMethod.GET)
     public ResponseEntity<List<User>> listAllUsers() {
         List<User> users = userService.findAllUsers();
         if(users.isEmpty()){
-            return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
         return new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
 
-    //-------------------Retrieve All Users by Employee Group----------------------------------------
 
-    @RequestMapping(value = "/user/", method = RequestMethod.GET)
-    public ResponseEntity<List<User>> listAllEmployees() {
-     List<User> employees = userService.findAllEmployees();
-        if(employees.isEmpty()){
-            return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<List<User>>(employees, HttpStatus.OK);
-    }
-
-    //-------------------Retrieve All Users by Consultant Group--------------------------------------
-
-    @RequestMapping(value = "/user/", method = RequestMethod.GET)
-    public ResponseEntity<List<User>> listAllConsultants() {
-        List<User> consultants = userService.findAllConsultants();
-        if(consultants.isEmpty()){
-            return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<List<User>>(consultants, HttpStatus.OK);
-    }
-
-
+    
     //-------------------Retrieve Single User--------------------------------------------------------
      
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -109,7 +103,6 @@ public class HelloWorldRestController {
         currentUser.setUsername(user.getUsername());
         currentUser.setAddress(user.getAddress());
         currentUser.setEmail(user.getEmail());
-	currentUser.setCountry(user.getCountry());
          
         userService.updateUser(currentUser);
         return new ResponseEntity<User>(currentUser, HttpStatus.OK);

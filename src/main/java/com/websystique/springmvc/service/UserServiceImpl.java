@@ -1,6 +1,8 @@
 package com.websystique.springmvc.service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.stereotype.Service;
@@ -11,68 +13,95 @@ import com.websystique.springmvc.model.User;
 public class UserServiceImpl implements UserService{
 	
 	private static final AtomicLong counter = new AtomicLong();
-	private static Map<String, List<User>> userMap = new HashMap<String, List<User>>();
-
-
+	
+	private static List<User> users;
+	
 	static{
-		// TODO rework to make it work with new model
-		// users= populateDummyUsers();
+		users= populateDummyUsers();
 	}
 
+
+
+
+        public List<User> findAllEmployees() {
+
+		/*
+		return userMap.get("employees");
+		 */
+
+        	List<User> employees = new ArrayList<User>();
+
+        	for (User usr : users) {
+            		if (usr.getGroup().toLowerCase().equals("employees")) {
+						employees.add(usr);
+					}
+
+            	}
+		return employees;
+
+        }   
+
+
+    
 	public List<User> findAllUsers() {
-        List<User> users = new LinkedList<User>();
-		userMap.values().stream().flatMap(List::stream).forEach(user -> users.add(user));
-        return users;
+		return users;
 	}
 	
 	public User findById(long id) {
-        return userMap.values().stream().flatMap(List::stream).filter(user -> user.getId()==(id)).findFirst().orElse(null);
-	}
-
-	public List<User> findAllEmployees() {
-		return userMap.get("employees");
-	}
-
-	public List<User> findAllConsultants() {
-		return userMap.get("consultants");
+		for(User user : users){
+			if(user.getId() == id){
+				return user;
+			}
+		}
+		return null;
 	}
 	
 	public User findByName(String name) {
-        return userMap.values().stream().flatMap(List::stream).filter(user -> user.getUsername().equals(name)).findFirst().orElse(null);
+		for(User user : users){
+			if(user.getUsername().equalsIgnoreCase(name)){
+				return user;
+			}
+		}
+		return null;
 	}
 	
 	public void saveUser(User user) {
 		user.setId(counter.incrementAndGet());
-		userMap.getOrDefault(user.getGroup().toLowerCase(), new LinkedList<User>()).add(user);
+		users.add(user);
 	}
 
 	public void updateUser(User user) {
-        //TODO Konflikt om man byter grupp (?)
-        List<User> users = userMap.get(user.getGroup());
 		int index = users.indexOf(user);
 		users.set(index, user);
 	}
 
 	public void deleteUserById(long id) {
-		User usr = userMap.values().stream().flatMap(List::stream).filter(user -> user.getId()==(id)).findFirst().orElse(null);
-        userMap.get(usr.getGroup()).remove(usr);
+		
+		for (Iterator<User> iterator = users.iterator(); iterator.hasNext(); ) {
+		    User user = iterator.next();
+		    if (user.getId() == id) {
+		        iterator.remove();
+		    }
+		}
 	}
 
 	public boolean isUserExist(User user) {
 		return findByName(user.getUsername())!=null;
 	}
 	
-	public void deleteAllUsers() {
-        userMap.clear();
+	public void deleteAllUsers(){
+		users.clear();
 	}
 
 	private static List<User> populateDummyUsers(){
 		List<User> users = new ArrayList<User>();
-		/*
-		users.add(new User(counter.incrementAndGet(),"Sam", "NY", "sam@abc.com"));
-		users.add(new User(counter.incrementAndGet(),"Tomy", "ALBAMA", "tomy@abc.com"));
-		users.add(new User(counter.incrementAndGet(),"Kelly", "NEBRASKA", "kelly@abc.com"));
-		*/
+		users.add(new User(counter.incrementAndGet(),"Sam", "London", "sam@abc.com", "UK"));
+		users.add(new User(counter.incrementAndGet(),"Tomy", "ALBAMA", "tomy@abc.com", "USA"));
+		users.add(new User(counter.incrementAndGet(),"Kelly", "NEBRASKA", "kelly@abc.com", "USA"));
+		users.add(new User(counter.incrementAndGet(),"Magnus Uggla", "Revoltstigen 1", "uggla@mange.se", "Sverige"));
+		users.add(new User(counter.incrementAndGet(),"Charles de Gaulle", "Paris 3", "degaule@france.fr", "France"));
+
+		
 		return users;
 	}
 

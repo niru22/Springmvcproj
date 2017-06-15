@@ -1,0 +1,8 @@
+/home/nils/Springmvcproj/Springmvcproj/src/main/java/com/websystique/springmvc/controller/IndexController.java
+/home/nils/Springmvcproj/Springmvcproj/src/main/java/com/websystique/springmvc/model/User.java
+/home/nils/Springmvcproj/Springmvcproj/src/main/java/com/websystique/springmvc/controller/HelloWorldRestController.java
+/home/nils/Springmvcproj/Springmvcproj/src/main/java/com/websystique/springmvc/service/UserService.java
+/home/nils/Springmvcproj/Springmvcproj/src/main/java/com/websystique/springmvc/configuration/HelloWorldInitializer.java
+/home/nils/Springmvcproj/Springmvcproj/src/main/java/com/websystique/springmvc/service/UserServiceImpl.java
+/home/nils/Springmvcproj/Springmvcproj/src/main/java/com/websystique/springmvc/configuration/CORSFilter.java
+/home/nils/Springmvcproj/Springmvcproj/src/main/java/com/websystique/springmvc/configuration/HelloWorldConfiguration.java

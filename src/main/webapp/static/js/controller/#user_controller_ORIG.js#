@@ -4,7 +4,6 @@ angular.module('myApp').controller('UserController', ['$scope', 'UserService', f
     var self = this;
     self.user={id:null,username:'',address:'',email:''};
     self.users=[];
-    self.employees[];
 
     self.submit = submit;
     self.edit = edit;
@@ -12,22 +11,7 @@ angular.module('myApp').controller('UserController', ['$scope', 'UserService', f
     self.reset = reset;
 
 
-    //fetchAllUsers();
-    fetchEmployeesUsers();
-
-
-    function fetchEmployeesUsers(){
-        UserService.fetchEmployeesUsers()
-            .then(
-            function(d) {
-                self.employees = d;
-            },
-            function(errResponse){
-                console.error('Error while fetching Users');
-            }
-        );
-    }
-    
+    fetchAllUsers();
 
     function fetchAllUsers(){
         UserService.fetchAllUsers()
